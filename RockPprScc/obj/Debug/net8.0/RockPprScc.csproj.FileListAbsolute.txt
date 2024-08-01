@@ -1,0 +1,14 @@
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\RockPprScc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\RockPprScc.AssemblyInfoInputs.cache
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\RockPprScc.AssemblyInfo.cs
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\RockPprScc.csproj.CoreCompileInputs.cache
+C:\Users\TEACHER\RockPprScc\bin\Debug\net8.0\RockPprScc.exe
+C:\Users\TEACHER\RockPprScc\bin\Debug\net8.0\RockPprScc.deps.json
+C:\Users\TEACHER\RockPprScc\bin\Debug\net8.0\RockPprScc.runtimeconfig.json
+C:\Users\TEACHER\RockPprScc\bin\Debug\net8.0\RockPprScc.dll
+C:\Users\TEACHER\RockPprScc\bin\Debug\net8.0\RockPprScc.pdb
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\RockPprScc.dll
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\refint\RockPprScc.dll
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\RockPprScc.pdb
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\RockPprScc.genruntimeconfig.cache
+C:\Users\TEACHER\RockPprScc\obj\Debug\net8.0\ref\RockPprScc.dll
