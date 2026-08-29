@@ -48,6 +48,16 @@ GitHub Actions will build the app, package the Windows publish output into a zip
 
 You can also run the workflow manually and provide a tag such as `v1.0.0`.
 
+## GitHub Pages Version
+
+The repository also includes a browser-based version of the game under `docs/`.
+
+It can be deployed to GitHub Pages with the included `GitHub Pages` workflow. After Pages is enabled in repository settings, the site will publish the contents of `docs/` and run entirely in the browser.
+
+The browser version is implemented with plain HTML, CSS, and JavaScript so it works directly on GitHub Pages without any build step.
+
+Expected live URL after Pages is enabled: [https://larrayne.github.io/RockPprScissor/](https://larrayne.github.io/RockPprScissor/)
+
 ## CI Pipeline
 
 The repository also includes a continuous integration workflow that runs on every push and pull request to `main`.

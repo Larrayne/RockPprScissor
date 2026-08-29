@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero card">
+      <div class="badge">GitHub Pages Edition</div>
+      <h1>Rock Paper Scissors</h1>
+      <p class="lede">Play a fast first-to-3 match against the computer. It runs entirely in the browser.</p>
+
+      <div class="scoreboard">
+        <div class="score-card">
+          <span>Player</span>
+          <strong id="playerScore">0</strong>
+        </div>
+        <div class="score-card">
+          <span>Computer</span>
+          <strong id="computerScore">0</strong>
+        </div>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-panel active" id="resultPanel">
+          <p class="label">Round Result</p>
+          <h2 id="resultText">Choose your move</h2>
+          <p id="flavorText">First to 3 points wins the match.</p>
+        </div>
+
+        <div class="status-panel">
+          <p class="label">Last Moves</p>
+          <div class="moves">
+            <div>
+              <span>You</span>
+              <strong id="playerMove">-</strong>
+            </div>
+            <div>
+              <span>CPU</span>
+              <strong id="computerMove">-</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="choices" aria-label="Choose rock, paper, or scissors">
+        <button class="choice rock" data-choice="ROCK">🪨 Rock</button>
+        <button class="choice paper" data-choice="PAPER">📄 Paper</button>
+        <button class="choice scissors" data-choice="SCISSORS">✂️ Scissors</button>
+      </div>
+
+      <div class="actions">
+        <button class="ghost" id="resetButton">New Match</button>
+      </div>
+
+      <p class="footer-note" id="statusNote">Match in progress.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
