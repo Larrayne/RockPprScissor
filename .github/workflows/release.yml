@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to build, for example v1.0.0"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Resolve release version
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch') {
+            $tag = '${{ inputs.tag }}'
+          } else {
+            $tag = $env:GITHUB_REF_NAME
+          }
+
+          if ($tag.StartsWith('v')) {
+            $tag = $tag.Substring(1)
+          }
+
+          if ([string]::IsNullOrWhiteSpace($tag)) {
+            throw 'Release tag could not be resolved.'
+          }
+
+          "VERSION=$tag" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Publish application
+        shell: pwsh
+        run: |
+          dotnet publish RockPprScc/RockPprScc.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:EnableCompressionInSingleFile=true `
+            -p:PublishTrimmed=false `
+            -p:Version=$env:VERSION `
+            -p:AssemblyVersion=$env:VERSION `
+            -p:FileVersion=$env:VERSION
+
+      - name: Package release assets
+        shell: pwsh
+        run: |
+          $publishDir = 'RockPprScc/bin/Release/net8.0-windows/win-x64/publish'
+          $packageDir = 'artifacts'
+          New-Item -ItemType Directory -Force -Path $packageDir | Out-Null
+          $zipPath = Join-Path $packageDir "RockPprScc-$env:VERSION-win-x64.zip"
+
+          Compress-Archive -Path "$publishDir/*" -DestinationPath $zipPath -Force
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+          name: RockPprScc ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+          generate_release_notes: true
+          files: |
+            artifacts/*.zip
